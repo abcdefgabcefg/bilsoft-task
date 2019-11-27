@@ -1,3 +1,4 @@
+using BAL.CategoryServices;
 using BAL.ProductServices;
 using DAL;
 using DAL.Entities;
@@ -33,6 +34,7 @@ namespace WEB
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             services.AddControllers();
         }
