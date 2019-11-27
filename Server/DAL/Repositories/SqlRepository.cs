@@ -16,18 +16,18 @@ namespace DAL.Repositories
             _entities = context.Set<TEntity>();
         }
 
-        public List<TEntity> Get(int? skipCount = null, int? takeCount = null, params Expression<Func<TEntity, object>>[] includes)
+        public List<TEntity> Get(int? skip = null, int? take = null, params Expression<Func<TEntity, object>>[] includes)
         {
             var entities = Include(_entities, includes);
 
-            if (skipCount.HasValue)
+            if (skip.HasValue)
             {
-                entities = entities.Skip(skipCount.Value);
+                entities = entities.Skip(skip.Value);
             }
 
-            if (takeCount.HasValue)
+            if (take.HasValue)
             {
-                entities = entities.Take(takeCount.Value);
+                entities = entities.Take(take.Value);
             }
 
             return entities.ToList();

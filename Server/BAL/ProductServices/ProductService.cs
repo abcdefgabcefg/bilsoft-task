@@ -13,9 +13,9 @@ namespace BAL.ProductServices
             _unitOfWork = unitOfWork;
         }
 
-        public List<Product> Get(int skipCount, int takeCount)
+        public List<Product> Get(int? skip, int? take)
         {
-            var products = _unitOfWork.Products.Get(skipCount, takeCount, product => product.Category);
+            var products = _unitOfWork.Products.Get(skip, take, product => product.Category);
 
             return products;
         }
