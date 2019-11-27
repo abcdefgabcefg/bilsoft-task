@@ -16,8 +16,8 @@ namespace DAL.UnitOfWork
         {
             _context = context;
 
-            Products = new Repository<Product>(_context);
-            Categories = new Repository<Category>(context);
+            Products = new SqlRepository<Product>(_context);
+            Categories = new SqlRepository<Category>(context);
         }
 
         public int Save()

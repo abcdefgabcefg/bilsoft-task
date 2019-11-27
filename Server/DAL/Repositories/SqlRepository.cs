@@ -7,11 +7,11 @@ using System.Linq.Expressions;
 
 namespace DAL.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : EntityBase
+    public class SqlRepository<TEntity> : IRepository<TEntity> where TEntity : EntityBase
     {
-        private DbSet<TEntity> _entities;
+        private readonly DbSet<TEntity> _entities;
 
-        public Repository(DbContext context)
+        public SqlRepository(DbContext context)
         {
             _entities = context.Set<TEntity>();
         }
