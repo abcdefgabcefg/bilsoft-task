@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace WEB
 {
@@ -40,6 +41,9 @@ namespace WEB
             services.AddControllers();
 
             services.AddAutoMapper(typeof(Startup));
+
+            var apiInfo = new OpenApiInfo() { Title = "BilSoft Task API" };
+            services.AddSwaggerGen(options => options.SwaggerDoc("v1", apiInfo));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -48,6 +52,14 @@ namespace WEB
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "BilSoft Task API");
+                options.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 
