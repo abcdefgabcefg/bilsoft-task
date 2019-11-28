@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace WEB
@@ -46,7 +47,7 @@ namespace WEB
             services.AddSwaggerGen(options => options.SwaggerDoc("v1", apiInfo));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -64,6 +65,9 @@ namespace WEB
             app.UseRouting();
 
             app.UseEndpoints(endpointsBuilder => endpointsBuilder.MapControllers());
+
+            var loggerConfiguration = Configuration.GetSection("Logging");
+            loggerFactory.AddFile(loggerConfiguration);
         }
     }
 }
