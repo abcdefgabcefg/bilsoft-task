@@ -13,7 +13,7 @@ namespace WEB
 
             CreateMap<PostProduct, Product>()
                 .ForMember(product => product.Category, opt => opt.Ignore())
-                .ForMember(product => product.CategoryId, opt => opt.MapFrom(postProduct => postProduct.Category));
+                .ForMember(product => product.CategoryId, opt => opt.MapFrom(postProduct => postProduct.Category.Value));
         }
     }
 }

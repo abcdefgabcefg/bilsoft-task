@@ -7,6 +7,7 @@ using WEB.Models;
 
 namespace WEB.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
     public class ProductController : Controller
     {

@@ -5,10 +5,10 @@ namespace WEB.Models
 {
     public class PostProduct
     {
-        [Required]
+        [Required(ErrorMessage = "Title is required")]
         public string Title { get; set; }
 
-        [Required]
-        public Guid Category { get; set; }
+        [Required(ErrorMessage = "Category is required")]
+        public Guid? Category { get; set; }
     }
 }
