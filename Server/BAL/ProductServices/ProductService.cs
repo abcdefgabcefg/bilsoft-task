@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BAL.ProductServices
 {
@@ -33,7 +34,7 @@ namespace BAL.ProductServices
             return products;
         }
 
-        public CreateProductResponse Create(Product product)
+        public async Task<CreateProductResponse> CreateAsync(Product product)
         {
             CreateProductResponse response;
 
@@ -50,7 +51,9 @@ namespace BAL.ProductServices
 
             product = _unitOfWork.Products.Create(product);
 
-            _unitOfWork.Save();
+            await _unitOfWork
+                .SaveAsync()
+                .ConfigureAwait(false);
 
             _logger.LogInformation($"Product {product.Id} was created");
 

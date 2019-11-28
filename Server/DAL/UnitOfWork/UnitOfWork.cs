@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace DAL.UnitOfWork
 {
@@ -20,9 +21,9 @@ namespace DAL.UnitOfWork
             Categories = new SqlRepository<Category>(context);
         }
 
-        public int Save()
+        public Task<int> SaveAsync()
         {
-            return _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
     }
 }

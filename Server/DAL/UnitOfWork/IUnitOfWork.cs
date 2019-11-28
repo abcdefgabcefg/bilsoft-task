@@ -1,5 +1,6 @@
 ﻿using DAL.Entities;
 using DAL.Repositories;
+using System.Threading.Tasks;
 
 namespace DAL.UnitOfWork
 {
@@ -9,6 +10,6 @@ namespace DAL.UnitOfWork
         
         public IRepository<Category> Categories { get; }
 
-        public int Save();
+        public Task<int> SaveAsync();
     }
 }

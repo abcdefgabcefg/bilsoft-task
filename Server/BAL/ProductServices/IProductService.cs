@@ -1,5 +1,6 @@
 ﻿using DAL.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BAL.ProductServices
 {
@@ -7,6 +8,6 @@ namespace BAL.ProductServices
     {
         public List<Product> Get(int? skip, int? take);
 
-        public CreateProductResponse Create(Product product);
+        public Task<CreateProductResponse> CreateAsync(Product product);
     }
 }

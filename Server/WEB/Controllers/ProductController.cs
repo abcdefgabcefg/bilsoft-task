@@ -4,6 +4,7 @@ using DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WEB.Models;
 
 namespace WEB.Controllers
@@ -32,11 +33,11 @@ namespace WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody]PostProduct postProduct)
+        public async Task<ActionResult> Post([FromBody]PostProduct postProduct)
         {
             var product = _mapper.Map<Product>(postProduct);
 
-            var response = _productService.Create(product);
+            var response = await _productService.CreateAsync(product);
 
             switch (response.Result)
             {
