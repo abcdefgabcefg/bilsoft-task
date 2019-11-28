@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BAL.ProductServices;
-using DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using WEB.Models;
@@ -20,7 +19,7 @@ namespace WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> Get([FromQuery]int? skip, [FromQuery]int? take)
+        public ActionResult Get([FromQuery]int? skip, [FromQuery]int? take)
         {
             var products = _productService.Get(skip, take);
 

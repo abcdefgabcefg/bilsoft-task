@@ -1,7 +1,5 @@
 ﻿using BAL.CategoryServices;
-using DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace WEB.Controllers
 {
@@ -16,7 +14,7 @@ namespace WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Category>> Get()
+        public ActionResult Get()
         {
             var categories = _categoryService.GetAll();
 
