@@ -6,5 +6,7 @@ namespace BAL.ProductServices
     public interface IProductService
     {
         public List<Product> Get(int? skip, int? take);
+
+        public Product Create(Product product);
     }
 }

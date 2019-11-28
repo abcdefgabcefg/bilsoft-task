@@ -19,5 +19,15 @@ namespace BAL.ProductServices
 
             return products;
         }
+
+        public Product Create(Product product)
+        {
+            product = _unitOfWork.Products.Create(product);
+
+            _unitOfWork.Save();
+
+            return product;
+        }
+
     }
 }

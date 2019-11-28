@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BAL.ProductServices;
+using DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using WEB.Models;
@@ -26,6 +27,22 @@ namespace WEB.Controllers
             var getProducts = _mapper.Map<List<GetProduct>>(products);
 
             return Json(getProducts);
+        }
+
+        [HttpPost]
+        public ActionResult Post([FromBody]PostProduct postProduct)
+        {
+            var product = _mapper.Map<Product>(postProduct);
+
+            product = _productService.Create(product);
+
+            var getProduct = _mapper.Map<GetProduct>(product);
+
+            var jsonResult = Json(getProduct);
+
+            jsonResult.StatusCode = 201;
+
+            return jsonResult;
         }
     }
 }

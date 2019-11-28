@@ -33,6 +33,13 @@ namespace DAL.Repositories
             return entities.ToList();
         }
 
+        public TEntity Create(TEntity entity)
+        {
+            entity = _entities.Add(entity).Entity;
+
+            return entity;
+        }
+
         private IQueryable<TEntity> Include(IQueryable<TEntity> entities, IEnumerable<Expression<Func<TEntity, object>>> properties)
         {
             foreach (var property in properties)
