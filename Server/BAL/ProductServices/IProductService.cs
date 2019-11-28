@@ -7,6 +7,6 @@ namespace BAL.ProductServices
     {
         public List<Product> Get(int? skip, int? take);
 
-        public Product Create(Product product);
+        public CreateProductResponse Create(Product product);
     }
 }

@@ -2,6 +2,7 @@
 using BAL.ProductServices;
 using DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using WEB.Models;
 
@@ -35,15 +36,29 @@ namespace WEB.Controllers
         {
             var product = _mapper.Map<Product>(postProduct);
 
-            product = _productService.Create(product);
+            var response = _productService.Create(product);
 
-            var getProduct = _mapper.Map<GetProduct>(product);
+            switch (response.Result)
+            {
+                case BAL.CreateProductResult.Success:
+                    
+                    var getProduct = _mapper.Map<GetProduct>(response.Product);
 
-            var jsonResult = Json(getProduct);
+                    var jsonResult = Json(getProduct);
 
-            jsonResult.StatusCode = 201;
+                    jsonResult.StatusCode = 201;
 
-            return jsonResult;
+                    return jsonResult;
+                
+                case BAL.CreateProductResult.CategoryNotFound:
+
+                    ModelState.AddModelError(nameof(PostProduct.Category), $"Category {postProduct.Category} not found");
+
+                    return BadRequest(ModelState);
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

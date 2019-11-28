@@ -20,13 +20,26 @@ namespace BAL.ProductServices
             return products;
         }
 
-        public Product Create(Product product)
+        public CreateProductResponse Create(Product product)
         {
+            CreateProductResponse response;
+
+            var categoryExists = _unitOfWork.Categories.Any(category => category.Id == product.CategoryId);
+
+            if (!categoryExists)
+            {
+                response = new CreateProductResponse(CreateProductResult.CategoryNotFound);
+
+                return response;
+            }
+
             product = _unitOfWork.Products.Create(product);
 
             _unitOfWork.Save();
 
-            return product;
+            response = new CreateProductResponse(product);
+
+            return response;
         }
 
     }

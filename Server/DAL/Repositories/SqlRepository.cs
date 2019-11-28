@@ -40,6 +40,13 @@ namespace DAL.Repositories
             return entity;
         }
 
+        public bool Any(Expression<Func<TEntity, bool>> filter)
+        {
+            var exists = _entities.Any(filter);
+
+            return exists;
+        }
+
         private IQueryable<TEntity> Include(IQueryable<TEntity> entities, IEnumerable<Expression<Func<TEntity, object>>> properties)
         {
             foreach (var property in properties)

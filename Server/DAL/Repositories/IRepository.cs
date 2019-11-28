@@ -10,5 +10,7 @@ namespace DAL.Repositories
         public List<TEntity> Get(int? skip = null, int? take = null, params Expression<Func<TEntity, object>>[] includes);
 
         public TEntity Create(TEntity entity);
+
+        public bool Any(Expression<Func<TEntity, bool>> filter);
     }
 }
