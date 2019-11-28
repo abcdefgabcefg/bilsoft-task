@@ -63,10 +63,7 @@ namespace WEB
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpointsBuilder => endpointsBuilder.MapControllers());
         }
     }
 }
