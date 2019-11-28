@@ -1,3 +1,4 @@
+using AutoMapper;
 using BAL.CategoryServices;
 using BAL.ProductServices;
 using DAL;
@@ -37,6 +38,8 @@ namespace WEB
             services.AddScoped<ICategoryService, CategoryService>();
 
             services.AddControllers();
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,7 +1,9 @@
-﻿using BAL.ProductServices;
+﻿using AutoMapper;
+using BAL.ProductServices;
 using DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using WEB.Models;
 
 namespace WEB.Controllers
 {
@@ -9,10 +11,12 @@ namespace WEB.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IMapper _mapper;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IMapper mapper)
         {
             _productService = productService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -20,7 +24,9 @@ namespace WEB.Controllers
         {
             var products = _productService.Get(skip, take);
 
-            return Json(products);
+            var getProducts = _mapper.Map<List<GetProduct>>(products);
+
+            return Json(getProducts);
         }
     }
 }
