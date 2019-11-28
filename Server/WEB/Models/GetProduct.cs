@@ -7,10 +7,8 @@ namespace WEB.Models
     {
         public Guid Id { get; set; }
 
-        [Required]
         public string Title { get; set; }
 
-        [Required]
         public string Category { get; set; }
     }
 }
