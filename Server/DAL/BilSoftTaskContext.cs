@@ -109,6 +109,13 @@ namespace DAL
 
             modelBuilder.Entity<Category>().HasData(categories);
             modelBuilder.Entity<Product>().HasData(products);
+
+            var entityTypes = modelBuilder.Model.GetEntityTypes();
+            foreach (var entityType in entityTypes)
+            {
+                var displayName = entityType.DisplayName();
+                entityType.SetTableName(displayName);
+            }
         }
     }
 }
