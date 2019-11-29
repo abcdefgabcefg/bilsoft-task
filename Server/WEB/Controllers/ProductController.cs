@@ -27,7 +27,7 @@ namespace WEB.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(GetProduct[]), StatusCodes.Status200OK)]
-        public ActionResult Get([FromQuery]int? skip, [FromQuery]int? take)
+        public IActionResult Get([FromQuery]int? skip, [FromQuery]int? take)
         {
             var products = _productService.Get(skip, take);
 
@@ -39,7 +39,7 @@ namespace WEB.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(GetProduct), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(IDictionary<string, string[]>), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> Post([FromBody]PostProduct postProduct)
+        public async Task<IActionResult> Post([FromBody]PostProduct postProduct)
         {
             var product = _mapper.Map<Product>(postProduct);
 

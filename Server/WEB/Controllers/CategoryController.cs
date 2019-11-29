@@ -7,6 +7,7 @@ namespace WEB.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
+    [ApiController]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -18,7 +19,7 @@ namespace WEB.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(Category[]), StatusCodes.Status200OK)]
-        public ActionResult Get()
+        public IActionResult Get()
         {
             var categories = _categoryService.GetAll();
 
