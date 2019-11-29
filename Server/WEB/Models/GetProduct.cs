@@ -2,10 +2,8 @@
 
 namespace WEB.Models
 {
-    public class GetProduct
-    {
-        public Guid Id { get; set; }
-
+    public class GetProduct : ModelWithId
+    { 
         public string Title { get; set; }
     }
 }

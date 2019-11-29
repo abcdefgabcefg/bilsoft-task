@@ -16,6 +16,8 @@ namespace WEB
                 .ForMember(product => product.CategoryId, opt => opt.MapFrom(postProduct => postProduct.Category.Value));
 
             CreateMap<Product, GetProduct>();
+
+            CreateMap<Category, GetCategory>();
         }
     }
 }

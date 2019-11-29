@@ -36,7 +36,7 @@ namespace WEB.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(GetProductIncludeCategory), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(GetProduct), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(IDictionary<string, string[]>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post([FromBody]PostProduct postProduct)
         {
