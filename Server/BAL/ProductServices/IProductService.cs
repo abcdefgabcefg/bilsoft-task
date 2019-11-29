@@ -6,7 +6,7 @@ namespace BAL.ProductServices
 {
     public interface IProductService
     {
-        public List<Product> Get(int? skip, int? take);
+        public Task<List<Product>> GetAsync(int? skip, int? take);
 
         public Task<CreateProductResponse> CreateAsync(Product product);
     }

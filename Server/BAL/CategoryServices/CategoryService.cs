@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BAL.CategoryServices
 {
@@ -18,12 +19,12 @@ namespace BAL.CategoryServices
             _logger = logger;
         }
 
-        public List<Category> GetAll()
+        public async Task<List<Category>> GetAllAsync()
         {
             var logId = Guid.NewGuid();
             _logger.LogDebug($"{logId} All categories was requested");
 
-            var categories = _unitOfWork.Categories.Get();
+            var categories = await _unitOfWork.Categories.GetAsync();
 
             var categoriesCount = categories.Count();
             _logger.LogDebug($"{logId} It was found {categoriesCount} categories");

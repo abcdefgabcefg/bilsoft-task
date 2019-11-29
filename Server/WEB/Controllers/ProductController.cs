@@ -27,9 +27,9 @@ namespace WEB.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(GetProductIncludeCategory[]), StatusCodes.Status200OK)]
-        public IActionResult Get([FromQuery]int? skip, [FromQuery]int? take)
+        public async Task<IActionResult> Get([FromQuery]int? skip, [FromQuery]int? take)
         {
-            var products = _productService.Get(skip, take);
+            var products = await _productService.GetAsync(skip, take);
 
             var getProducts = _mapper.Map<List<GetProductIncludeCategory>>(products);
 

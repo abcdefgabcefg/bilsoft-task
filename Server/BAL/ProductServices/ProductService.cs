@@ -19,14 +19,14 @@ namespace BAL.ProductServices
             _logger = logger;
         }
 
-        public List<Product> Get(int? skip, int? take)
+        public async Task<List<Product>> GetAsync(int? skip, int? take)
         {
             var logId = Guid.NewGuid();
             var logSkip = skip.HasValue ? skip.Value.ToString() : "null";
             var logTake = take.HasValue ? take.Value.ToString() : "null";
             _logger.LogDebug($"{logId} Products was requested with parameters: {nameof(skip)} : {logSkip}, {nameof(take)} : {logTake}");
 
-            var products = _unitOfWork.Products.Get(skip, take, product => product.Category);
+            var products = await _unitOfWork.Products.GetAsync(skip, take, product => product.Category);
 
             var productsCount = products.Count();
             _logger.LogDebug($"{logId} It was found {productsCount} products");
@@ -38,7 +38,7 @@ namespace BAL.ProductServices
         {
             CreateProductResponse response;
 
-            var categoryExists = _unitOfWork.Categories.Any(category => category.Id == product.CategoryId);
+            var categoryExists = await _unitOfWork.Categories.AnyAsync(category => category.Id == product.CategoryId);
 
             if (!categoryExists)
             {
@@ -49,11 +49,9 @@ namespace BAL.ProductServices
                 return response;
             }
 
-            product = _unitOfWork.Products.Create(product);
+            product = await _unitOfWork.Products.CreateAsync(product);
 
-            await _unitOfWork
-                .SaveAsync()
-                .ConfigureAwait(false);
+            await _unitOfWork.SaveAsync();
 
             _logger.LogInformation($"Product {product.Id} was created");
 

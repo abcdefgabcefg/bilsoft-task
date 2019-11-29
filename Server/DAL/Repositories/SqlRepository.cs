@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -16,7 +17,7 @@ namespace DAL.Repositories
             _entities = context.Set<TEntity>();
         }
 
-        public List<TEntity> Get(int? skip = null, int? take = null, params Expression<Func<TEntity, object>>[] includes)
+        public Task<List<TEntity>> GetAsync(int? skip = null, int? take = null, params Expression<Func<TEntity, object>>[] includes)
         {
             var entities = Include(_entities, includes);
 
@@ -30,19 +31,19 @@ namespace DAL.Repositories
                 entities = entities.Take(take.Value);
             }
 
-            return entities.ToList();
+            return entities.ToListAsync();
         }
 
-        public TEntity Create(TEntity entity)
+        public async Task<TEntity> CreateAsync(TEntity entity)
         {
-            entity = _entities.Add(entity).Entity;
+            var entry = await _entities.AddAsync(entity); 
 
-            return entity;
+            return entry.Entity;
         }
 
-        public bool Any(Expression<Func<TEntity, bool>> filter)
+        public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> filter)
         {
-            var exists = _entities.Any(filter);
+            var exists = _entities.AnyAsync(filter);
 
             return exists;
         }

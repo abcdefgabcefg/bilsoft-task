@@ -2,6 +2,7 @@
 using DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WEB.Controllers
 {
@@ -19,9 +20,9 @@ namespace WEB.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(Category[]), StatusCodes.Status200OK)]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var categories = _categoryService.GetAll();
+            var categories = await _categoryService.GetAllAsync();
 
             return Json(categories);
         }
