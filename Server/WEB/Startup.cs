@@ -18,12 +18,14 @@ namespace WEB
 {
     public class Startup
     {
+        private const string corsPolicyName = "client";
+
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -45,6 +47,9 @@ namespace WEB
 
             var apiInfo = new OpenApiInfo() { Title = "BilSoft Task API" };
             services.AddSwaggerGen(options => options.SwaggerDoc("v1", apiInfo));
+
+            var client = Configuration.GetValue<string>("Client");
+            services.AddCors(options => options.AddPolicy(corsPolicyName, builder => builder.WithOrigins(client)));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -53,6 +58,8 @@ namespace WEB
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(corsPolicyName);
 
             app.UseSwagger();
 
