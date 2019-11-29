@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using BAL.ProductServices;
 using DAL.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,6 +11,7 @@ using WEB.Models;
 
 namespace WEB.Controllers
 {
+    [Produces("application/json")]
     [ApiController]
     [Route("api/[controller]")]
     public class ProductController : Controller
@@ -23,6 +26,7 @@ namespace WEB.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(GetProduct[]), StatusCodes.Status200OK)]
         public ActionResult Get([FromQuery]int? skip, [FromQuery]int? take)
         {
             var products = _productService.Get(skip, take);
@@ -33,6 +37,8 @@ namespace WEB.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(GetProduct), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(IDictionary<string, string[]>), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Post([FromBody]PostProduct postProduct)
         {
             var product = _mapper.Map<Product>(postProduct);
