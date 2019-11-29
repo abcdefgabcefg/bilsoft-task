@@ -3,7 +3,6 @@ using BAL.ProductServices;
 using DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -53,7 +52,7 @@ namespace WEB.Controllers
 
                     var jsonResult = Json(getProduct);
 
-                    jsonResult.StatusCode = 201;
+                    jsonResult.StatusCode = StatusCodes.Status201Created;
 
                     return jsonResult;
                 
