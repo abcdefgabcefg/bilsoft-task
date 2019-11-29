@@ -26,18 +26,18 @@ namespace WEB.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(GetProduct[]), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetProductIncludeCategory[]), StatusCodes.Status200OK)]
         public IActionResult Get([FromQuery]int? skip, [FromQuery]int? take)
         {
             var products = _productService.Get(skip, take);
 
-            var getProducts = _mapper.Map<List<GetProduct>>(products);
+            var getProducts = _mapper.Map<List<GetProductIncludeCategory>>(products);
 
             return Json(getProducts);
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(GetProduct), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(GetProductIncludeCategory), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(IDictionary<string, string[]>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post([FromBody]PostProduct postProduct)
         {

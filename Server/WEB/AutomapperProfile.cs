@@ -8,12 +8,14 @@ namespace WEB
     {
         public AutomapperProfile()
         {
-            CreateMap<Product, GetProduct>()
+            CreateMap<Product, GetProductIncludeCategory>()
                 .ForMember(getProduct => getProduct.Category, opt => opt.MapFrom(product => product.Category.Title));
 
             CreateMap<PostProduct, Product>()
                 .ForMember(product => product.Category, opt => opt.Ignore())
                 .ForMember(product => product.CategoryId, opt => opt.MapFrom(postProduct => postProduct.Category.Value));
+
+            CreateMap<Product, GetProduct>();
         }
     }
 }
