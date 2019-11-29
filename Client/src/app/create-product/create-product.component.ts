@@ -13,11 +13,14 @@ import { Category } from '../category';
 export class CreateProductComponent implements OnInit {
   categories : Category[];
   createProductForm: FormGroup;
+  http: HttpClient;
 
   constructor(
-    private http: HttpClient,
+    private httpClient: HttpClient,
     private formBuilder: FormBuilder) {
-      http
+      this.http = httpClient;
+
+      this.http
       .get<Category[]>("https://localhost:44335/api/category")
       .subscribe(categories => this.categories = categories);
 
@@ -31,7 +34,8 @@ export class CreateProductComponent implements OnInit {
   }
 
   create(product: any){
-    console.log(product);
+    this.http.post("https://localhost:44335/api/product", product)
+      .subscribe(() => console.log("Finished"));
   }
 
 }

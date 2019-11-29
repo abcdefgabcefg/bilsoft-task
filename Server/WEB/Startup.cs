@@ -49,7 +49,7 @@ namespace WEB
             services.AddSwaggerGen(options => options.SwaggerDoc("v1", apiInfo));
 
             var client = Configuration.GetValue<string>("Client");
-            services.AddCors(options => options.AddPolicy(corsPolicyName, builder => builder.WithOrigins(client)));
+            services.AddCors(options => options.AddPolicy(corsPolicyName, builder => builder.WithOrigins(client).AllowAnyHeader().AllowAnyMethod()));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
