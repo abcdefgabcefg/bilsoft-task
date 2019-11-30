@@ -23,7 +23,7 @@ export class PaginationComponent implements OnInit{
   ngOnInit(){
     this.getCount();
 
-    this.eventService.productCreated.subscribe(() => this.getCount());
+    this.eventService.productCreated.follow(() => this.getCount());
    }
 
   changePage(page: number): void{

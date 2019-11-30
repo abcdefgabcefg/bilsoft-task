@@ -3,7 +3,7 @@ export class Event{
     nofify(...args: any[]): void{
         this.subscribers.forEach(subscriber => subscriber(...args));
     }
-    subscribe(subscriber: (...args: any[]) => any){
+    follow(subscriber: (...args: any[]) => any){
         this.subscribers.push(subscriber);
     }
 }

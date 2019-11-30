@@ -22,8 +22,8 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.get(0);
-    this.eventService.productCreated.subscribe(() => this.get(0));
-    this.eventService.pageChanged.subscribe(page => this.changePage(page));
+    this.eventService.productCreated.follow(() => this.get(0));
+    this.eventService.pageChanged.follow(page => this.changePage(page));
   }
 
   get(skip: number){
