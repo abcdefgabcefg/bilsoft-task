@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DisplayProduct } from '../displayProduct';
 import { Injectable } from '@angular/core';
 
@@ -13,7 +13,7 @@ import { EventService } from '../event.service';
 @Injectable()
 export class ProductListComponent implements OnInit {
   products: DisplayProduct[];
-  take: number = 2;
+  @Input() take: number;
 
   constructor(
     private productService: ProductService,
