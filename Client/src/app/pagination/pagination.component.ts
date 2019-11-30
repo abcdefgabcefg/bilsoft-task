@@ -12,6 +12,7 @@ import { EventService } from '../event.service';
 export class PaginationComponent implements OnInit{
   pages: number[];
   @Input() take: number;
+  current: number = 1;
 
   constructor(
     private productService: ProductService,
@@ -26,6 +27,7 @@ export class PaginationComponent implements OnInit{
    }
 
   changePage(page: number): void{
+    this.current = page;
     this.eventService.pageChanged.nofify(page);
    }
 
