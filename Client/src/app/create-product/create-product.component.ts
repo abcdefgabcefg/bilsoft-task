@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,14 +13,13 @@ import { Category } from '../category';
 export class CreateProductComponent implements OnInit {
   categories : Category[];
   createProductForm: FormGroup;
-  http: HttpClient;
+  @Output() productCreated = new EventEmitter();
 
   constructor(
-    private httpClient: HttpClient,
-    private formBuilder: FormBuilder) {
-      this.http = httpClient;
-
-      this.http
+    private http: HttpClient,
+    formBuilder: FormBuilder) {
+      
+      http
       .get<Category[]>("https://localhost:44335/api/category")
       .subscribe(categories => this.categories = categories);
 
@@ -33,9 +32,8 @@ export class CreateProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  create(product: any){
-    this.http.post("https://localhost:44335/api/product", product)
-      .subscribe(() => console.log("Finished"));
+  create(product : any){
+    this.http.post("https://localhost:44335/api/product", product).subscribe(() => this.productCreated.emit());
   }
 
 }

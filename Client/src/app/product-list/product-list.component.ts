@@ -3,6 +3,8 @@ import { DisplayProduct } from '../displayProduct';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { ProductService } from '../product.service'
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -12,13 +14,20 @@ import { HttpClient } from '@angular/common/http';
 export class ProductListComponent implements OnInit {
   products: DisplayProduct[];
 
-  constructor(private http: HttpClient) {
-    http
-      .get<DisplayProduct[]>(`https://localhost:44335/api/product`)
-      .subscribe(products => this.products = products);
+  constructor(
+    private http: HttpClient,
+    private productService: ProductService) {
   }
 
   ngOnInit() {
+    this.getAll();
   }
 
+  getAll(){
+    this.productService.getAll().subscribe(products => {
+      this.products = products;
+      console.log("Product list got products");
+      console.log(this.products);
+    });
+  }
 }
