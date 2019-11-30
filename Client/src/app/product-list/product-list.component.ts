@@ -19,6 +19,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.productService.productCreatedCallbacks.push(() => this.get(0));
     this.get(0);
   }
 

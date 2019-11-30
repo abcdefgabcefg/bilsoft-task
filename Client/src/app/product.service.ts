@@ -9,20 +9,27 @@ import { DisplayProduct } from './displayProduct'
 })
 export class ProductService {
   productUrl: string = "https://localhost:44335/api/product";
+  productCreatedCallbacks: (() => any)[] = [];
 
   constructor(private http: HttpClient){ 
 
   }
 
   get(skip: number, take: number): Observable<DisplayProduct[]>{
-    var products = this.http.get<DisplayProduct[]>(`${this.productUrl}?skip=${skip}&take=${take}`);
+    const products = this.http.get<DisplayProduct[]>(`${this.productUrl}?skip=${skip}&take=${take}`);
 
     return products;
   }
 
   count(): Observable<number>{
-    var count = this.http.get<number>(`${this.productUrl}/count`);
+    const count = this.http.get<number>(`${this.productUrl}/count`);
 
     return count;
+  }
+
+  create(product: any): Observable<any>{
+    const response = this.http.post(this.productUrl, product);
+
+    return response;
   }
 }

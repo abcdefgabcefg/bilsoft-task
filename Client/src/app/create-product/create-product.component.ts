@@ -1,10 +1,9 @@
-import { Component, OnInit, Injectable, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 
-import { Category } from '../category';
 import { CategoryService } from '../category.service';
-
+import { ProductService } from '../product.service';
+import { Category } from '../category';
 
 @Component({
   selector: 'app-create-product',
@@ -15,12 +14,11 @@ import { CategoryService } from '../category.service';
 export class CreateProductComponent implements OnInit {
   categories : Category[];
   createProductForm: FormGroup;
-  @Output() productCreated = new EventEmitter();
 
   constructor(
-    private http: HttpClient,
     private formBuilder: FormBuilder,
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService,
+    private productService: ProductService) {
     
    }
 
@@ -46,7 +44,9 @@ export class CreateProductComponent implements OnInit {
   }
 
   create(product : any){
-    this.http.post("https://localhost:44335/api/product", product).subscribe(() => this.productCreated.emit());
+    this.productService
+      .create(product)
+      .subscribe(() => this.productService.productCreatedCallbacks.forEach(callback => callback()));
   }
 
 }
