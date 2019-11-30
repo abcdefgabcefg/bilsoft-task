@@ -3,6 +3,7 @@ import { DisplayProduct } from '../displayProduct';
 import { Injectable } from '@angular/core';
 
 import { ProductService } from '../product.service'
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-product-list',
@@ -15,11 +16,12 @@ export class ProductListComponent implements OnInit {
   take: number = 2;
 
   constructor(
-    private productService: ProductService) {
+    private productService: ProductService,
+    private eventService: EventService) {
   }
 
   ngOnInit() {
-    this.productService.productCreatedCallbacks.push(() => this.get(0));
+    this.eventService.productCreated.subscribe(() => this.get(0));
     this.get(0);
   }
 

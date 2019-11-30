@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { CategoryService } from '../category.service';
 import { ProductService } from '../product.service';
+import { EventService } from '../event.service';
 import { Category } from '../category';
 
 @Component({
@@ -18,7 +19,8 @@ export class CreateProductComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
-    private productService: ProductService) {
+    private productService: ProductService,
+    private eventService: EventService) {
     
    }
 
@@ -46,7 +48,7 @@ export class CreateProductComponent implements OnInit {
   create(product : any){
     this.productService
       .create(product)
-      .subscribe(() => this.productService.productCreatedCallbacks.forEach(callback => callback()));
+      .subscribe(() => this.eventService.productCreated.nofify());
   }
 
 }

@@ -9,10 +9,9 @@ import { DisplayProduct } from './displayProduct'
 })
 export class ProductService {
   productUrl: string = "https://localhost:44335/api/product";
-  productCreatedCallbacks: (() => any)[] = [];
 
   constructor(private http: HttpClient){ 
-
+    
   }
 
   get(skip: number, take: number): Observable<DisplayProduct[]>{
