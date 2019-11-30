@@ -14,9 +14,15 @@ export class ProductService {
 
   }
 
-  getAll(): Observable<DisplayProduct[]>{
-    var products = this.http.get<DisplayProduct[]>(this.productUrl);
+  get(skip: number, take: number): Observable<DisplayProduct[]>{
+    var products = this.http.get<DisplayProduct[]>(`${this.productUrl}?skip=${skip}&take=${take}`);
 
     return products;
+  }
+
+  count(): Observable<number>{
+    var count = this.http.get<number>(`${this.productUrl}/count`);
+
+    return count;
   }
 }

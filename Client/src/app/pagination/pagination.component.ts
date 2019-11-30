@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, Injectable } from '@angular/core';
+
+import { ProductService } from '../product.service'; 
 
 @Component({
   selector: 'app-pagination',
@@ -6,12 +8,19 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit{
-  @Input() count: number;
   pages: number[];
   @Output() pageChanged : EventEmitter<number> = new EventEmitter();
+  @Input() take: number;
+
+  constructor(private productService: ProductService) {
+
+  }
 
   ngOnInit(){
-    this.pages = [...Array(this.count).keys()].map(page => ++page);
+    this.productService.count().subscribe(productsCount => {
+      const pagesCount = Math.ceil(productsCount / this.take);
+      this.pages = [...Array(pagesCount).keys()].map(page => ++page);
+    });
    }
 
   changePage(page: number): void{

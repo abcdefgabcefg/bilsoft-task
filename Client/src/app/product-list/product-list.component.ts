@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DisplayProduct } from '../displayProduct';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { ProductService } from '../product.service'
 
@@ -13,25 +12,24 @@ import { ProductService } from '../product.service'
 @Injectable()
 export class ProductListComponent implements OnInit {
   products: DisplayProduct[];
+  take: number = 2;
 
   constructor(
-    private http: HttpClient,
     private productService: ProductService) {
   }
 
   ngOnInit() {
-    this.getAll();
+    this.get(0);
   }
 
-  getAll(){
-    this.productService.getAll().subscribe(products => {
+  get(skip: number){
+    this.productService.get(skip, this.take).subscribe(products => {
       this.products = products;
-      console.log("Product list got products");
-      console.log(this.products);
     });
   }
 
   changePage(page: number): void{
-    console.log(`page will change to ${page}`);
+    const skip = (page - 1) * this.take;
+    this.get(skip);
   }
 }

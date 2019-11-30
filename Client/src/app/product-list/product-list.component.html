@@ -6,4 +6,4 @@
         <div>{{product.category}}</div>
     </div>
 </div>
-<app-pagination [count]="10" (pageChanged)="changePage($event)"></app-pagination>
+<app-pagination [take]="take" (pageChanged)="changePage($event)"></app-pagination>
