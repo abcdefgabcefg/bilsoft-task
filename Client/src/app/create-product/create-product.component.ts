@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import { Category } from '../category';
+import { CategoryService } from '../category.service';
+
 
 @Component({
   selector: 'app-create-product',
@@ -17,19 +19,30 @@ export class CreateProductComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    formBuilder: FormBuilder) {
-      
-      http
-      .get<Category[]>("https://localhost:44335/api/category")
-      .subscribe(categories => this.categories = categories);
-
-      this.createProductForm = formBuilder.group({
-        title: '',
-        category: ''
-      });
+    private formBuilder: FormBuilder,
+    private categoryService: CategoryService) {
+    
    }
 
   ngOnInit() {
+    this.categoryService.getAll().subscribe(categories => {
+      this.categories = categories;
+      
+      let selectedCategory = '';
+      if(categories.length){
+        selectedCategory = categories[0].id;
+      }
+      
+      this.createProductForm = this.formBuilder.group({
+        title: '',
+        category: [selectedCategory]
+      });
+    });
+
+    this.createProductForm = this.formBuilder.group({
+      title: '',
+      category: ''
+    });
   }
 
   create(product : any){
