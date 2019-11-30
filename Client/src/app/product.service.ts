@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 
-import { DisplayProduct } from './displayProduct'
+import { DisplayProduct } from './displayProduct';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  productUrl: string = "https://localhost:44335/api/product";
+  productUrl: string = environment.baseUrl + environment.productUrl;
 
   constructor(private http: HttpClient){ 
     
@@ -21,7 +22,7 @@ export class ProductService {
   }
 
   count(): Observable<number>{
-    const count = this.http.get<number>(`${this.productUrl}/count`);
+    const count = this.http.get<number>(`${this.productUrl}/${environment.countUrl}`);
 
     return count;
   }
