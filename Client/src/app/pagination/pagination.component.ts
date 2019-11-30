@@ -33,6 +33,8 @@ export class PaginationComponent implements OnInit{
 
    getCount(): void{
     this.productService.count().subscribe(productsCount => {
+      this.current = 1;
+
       const pagesCount = Math.ceil(productsCount / this.take);
       this.pages = [...Array(pagesCount).keys()].map(page => ++page);
     });
