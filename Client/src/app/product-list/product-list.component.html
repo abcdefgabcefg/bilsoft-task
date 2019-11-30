@@ -1,4 +1,4 @@
-<app-create-product (productCreated)="getAll()"></app-create-product>
+<app-create-product (productCreated)="get(0)"></app-create-product>
 <div class="product-list">
     <div *ngFor="let product of products" class="product">
         <div>{{product.id}}</div>
