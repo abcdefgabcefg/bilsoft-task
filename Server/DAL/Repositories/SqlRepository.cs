@@ -48,6 +48,11 @@ namespace DAL.Repositories
             return exists;
         }
 
+        public Task<int> Count()
+        {
+            return _entities.CountAsync();
+        }
+
         private IQueryable<TEntity> Include(IQueryable<TEntity> entities, IEnumerable<Expression<Func<TEntity, object>>> properties)
         {
             foreach (var property in properties)
@@ -56,6 +61,6 @@ namespace DAL.Repositories
             }
 
             return entities;
-        }
+        }        
     }
 }

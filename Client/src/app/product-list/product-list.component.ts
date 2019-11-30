@@ -30,4 +30,8 @@ export class ProductListComponent implements OnInit {
       console.log(this.products);
     });
   }
+
+  changePage(page: number): void{
+    console.log(`page will change to ${page}`);
+  }
 }

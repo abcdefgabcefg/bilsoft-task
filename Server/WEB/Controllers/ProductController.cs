@@ -35,6 +35,15 @@ namespace WEB.Controllers
             return Json(getProducts);
         }
 
+        [HttpGet("count")]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Count()
+        {
+            var count = await _productService.Count();
+
+            return Json(count);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(GetProduct), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(IDictionary<string, string[]>), StatusCodes.Status400BadRequest)]

@@ -13,5 +13,7 @@ namespace DAL.Repositories
         public Task<TEntity> CreateAsync(TEntity entity);
 
         public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> filter);
+
+        public Task<int> Count();
     }
 }

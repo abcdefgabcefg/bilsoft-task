@@ -60,5 +60,9 @@ namespace BAL.ProductServices
             return response;
         }
 
+        public Task<int> Count()
+        {
+            return _unitOfWork.Products.Count();
+        }
     }
 }

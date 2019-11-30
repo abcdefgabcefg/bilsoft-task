@@ -9,5 +9,7 @@ namespace BAL.ProductServices
         public Task<List<Product>> GetAsync(int? skip, int? take);
 
         public Task<CreateProductResponse> CreateAsync(Product product);
+
+        public Task<int> Count();
     }
 }
