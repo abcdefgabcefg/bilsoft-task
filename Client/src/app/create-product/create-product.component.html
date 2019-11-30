@@ -1,9 +1,12 @@
-<form [formGroup]="createProductForm" (ngSubmit)="create(createProductForm.value)">
+<form [formGroup]="createProductForm" (ngSubmit)="createProduct(createProductForm)">
     <div>
         <label for="title">
             Title
         </label>
         <input id="title" type="text" formControlName="title">
+        <div *ngIf="(title.dirty || title.touched) && title.invalid">
+            Title is required
+        </div>
     </div>
     <div>
         <label for="category">
