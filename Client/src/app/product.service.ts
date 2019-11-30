@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { DisplayProduct } from './displayProduct';
+import { Product } from './product';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -15,8 +15,8 @@ export class ProductService {
     
   }
 
-  get(skip: number, take: number): Observable<DisplayProduct[]>{
-    const products = this.http.get<DisplayProduct[]>(`${this.productUrl}?skip=${skip}&take=${take}`);
+  get(skip: number, take: number): Observable<Product[]>{
+    const products = this.http.get<Product[]>(`${this.productUrl}?skip=${skip}&take=${take}`);
 
     return products;
   }
