@@ -1,9 +1,9 @@
 export class Event{
-    subscribers: (() => any)[] = [];
-    nofify(): void{
-        this.subscribers.forEach(subscriber => subscriber());
+    subscribers: ((...args: any[]) => any)[] = [];
+    nofify(...args: any[]): void{
+        this.subscribers.forEach(subscriber => subscriber(...args));
     }
-    subscribe(subscriber: () => any){
+    subscribe(subscriber: (...args: any[]) => any){
         this.subscribers.push(subscriber);
     }
 }

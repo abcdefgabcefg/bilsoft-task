@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter, Injectable } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 
 import { ProductService } from '../product.service'; 
 import { EventService } from '../event.service';
@@ -11,7 +11,6 @@ import { EventService } from '../event.service';
 @Injectable()
 export class PaginationComponent implements OnInit{
   pages: number[];
-  @Output() pageChanged : EventEmitter<number> = new EventEmitter();
   @Input() take: number;
 
   constructor(
@@ -27,7 +26,7 @@ export class PaginationComponent implements OnInit{
    }
 
   changePage(page: number): void{
-    this.pageChanged.emit(page);
+    this.eventService.pageChanged.nofify(page);
    }
 
    getCount(): void{
