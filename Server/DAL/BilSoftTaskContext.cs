@@ -104,6 +104,78 @@ namespace DAL
                     Id = new Guid("56bf4b57-3ebd-4436-a821-6c0575f85686"),
                     Title = "Product 10",
                     CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("709fe3c4-52d0-4236-8674-706dce869c46"),
+                    Title = "Product 11",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("044ad6a4-1f95-45e6-af1f-4a3db6e565ac"),
+                    Title = "Product 12",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("dce5b3ad-dc96-48f2-91fa-61a4a8142611"),
+                    Title = "Product 13",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("9c356c4b-9a06-4d0a-ac8a-b12c6b985d09"),
+                    Title = "Product 14",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("0cfb0a0a-f739-428c-9533-ed2668dd5f3b"),
+                    Title = "Product 15",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("5f6cb301-69e8-492a-b39b-256bc3f54435"),
+                    Title = "Product 16",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("61f8b135-67ea-4e80-a0de-1b8949637500"),
+                    Title = "Product 17",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("90f74aa5-40c8-424e-88b9-b5ba9bfc7028"),
+                    Title = "Product 18",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("f2945837-ef09-4c24-86da-6607cf948c37"),
+                    Title = "Product 19",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("a697dc57-f02b-4bae-8b38-c778b85e4498"),
+                    Title = "Product 20",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("c2a47173-ecbd-42f7-9616-e3ca93eeadd0"),
+                    Title = "Product 20",
+                    CategoryId = categories[4].Id
+                },
+                new Product
+                {
+                    Id = new Guid("08c432ff-2eca-40e3-919d-0549a26cf221"),
+                    Title = "Product 20",
+                    CategoryId = categories[4].Id
                 }
             };
 

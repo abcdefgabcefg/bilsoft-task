@@ -30,7 +30,7 @@ namespace WEB
         public void ConfigureServices(IServiceCollection services)
         {
             var sqlServerConnectionString = Configuration.GetConnectionString("default");
-            services.AddDbContext<BilSoftTaskContext>(options => options.UseSqlServer(sqlServerConnectionString));
+            services.AddDbContext<BilSoftTaskContext>(options => options.UseSqlServer(sqlServerConnectionString).EnableSensitiveDataLogging(true));
             services.AddScoped<DbContext, BilSoftTaskContext>();
 
             services.AddScoped<IRepository<Product>, SqlRepository<Product>>();
