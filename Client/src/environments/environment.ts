@@ -4,5 +4,5 @@ export const environment = {
   productUrl: "product",
   categoryUrl: "category",
   countUrl: "count",
-  take: "2"
+  take: "10"
 };
