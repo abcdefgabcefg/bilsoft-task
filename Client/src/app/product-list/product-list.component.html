@@ -1,7 +1,7 @@
-<div class="product-list">
-    <div *ngFor="let product of products" class="product">
-        <div>{{product.id}}</div>
-        <div>{{product.title}}</div>
-        <div>{{product.category}}</div>
+<div class="container">
+    <div *ngFor="let product of products" class="row mb-2 p-5 border">
+        <div class="col text-center">{{product.id}}</div>
+        <div class="col text-center">{{product.title}}</div>
+        <div class="col text-center">{{product.category}}</div>
     </div>
 </div>
